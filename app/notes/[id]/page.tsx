@@ -1,14 +1,38 @@
+import { getSingleNote } from '@/lib/api/clientApi';
 import {
-  QueryClient,
   HydrationBoundary,
+  QueryClient,
   dehydrate,
 } from '@tanstack/react-query';
-import { getSingleNote } from '@/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
 
 type Props = {
   params: Promise<{ id: string }>;
 };
+
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
+  const note = await getSingleNote(id);
+  return {
+    title: `Note: ${note.title}`,
+    description: note.content.slice(0, 30),
+    openGraph: {
+      title: `Note: ${note.title}`,
+      description: note.content.slice(0, 100),
+      url: `https://next-docs-9f0504b0a741.herokuapp.com/notes/${id}`,
+      siteName: 'NoteHub',
+      images: [
+        {
+          url: 'https://ac.goit.global/fullstack/react/og-meta.jpg',
+          width: 1200,
+          height: 630,
+          alt: note.title,
+        },
+      ],
+      type: 'article',
+    },
+  };
+}
 
 const NoteDetails = async ({ params }: Props) => {
   const { id } = await params;

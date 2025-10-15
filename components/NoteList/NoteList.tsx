@@ -1,5 +1,6 @@
-import { Note } from '@/lib/api';
+import { Note } from '@/lib/api/clientApi';
 import NoteItem from '../NoteItem/NoteItem';
+import css from './NoteList.module.css';
 
 type Props = {
   notes: Note[];
@@ -7,7 +8,7 @@ type Props = {
 
 const NoteList = ({ notes }: Props) => {
   return (
-    <ul>
+    <ul className={css.note__list}>
       {notes.map((note) => (
         <NoteItem
           key={note.id}

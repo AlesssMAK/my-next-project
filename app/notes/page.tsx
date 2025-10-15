@@ -1,5 +1,5 @@
 import NoteList from '@/components/NoteList/NoteList';
-import { getNotes } from '@/lib/api';
+import { getNotes } from '@/lib/api/clientApi';
 
 const Notes = async () => {
   const notes = await getNotes();

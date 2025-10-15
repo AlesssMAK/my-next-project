@@ -1,7 +1,7 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 24px;
   padding: 12px;
   border-block-end: 1px solid #ccc;
@@ -13,4 +13,10 @@
   justify-content: flex-start;
   gap: 12px;
   list-style-type: none;
+}
+
+.nav_list {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
